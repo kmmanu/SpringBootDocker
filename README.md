@@ -1,4 +1,4 @@
-To Build the docker image : `mvn clean install docker:build`
+To Build the docker image : `mvn clean install dockerfile:build`
 To Run  : `docker run -p 8080:8080 -e SPRING_PROFILES_ACTIVE=esp  kmmanu/spring-boot-docker`
 
 
