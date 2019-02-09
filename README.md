@@ -1,5 +1,5 @@
-To Build the docker image : `mvn clean install docker:build`
-To Run  : `docker run -p 8080:8080 -e SPRING_PROFILES_ACTIVE=esp  kmmanu/spring-boot-docker`
+To Build the docker image : `mvn clean install dockerfile:build`
+To Run  : `docker run -p 8080:8080 -e SPRING_PROFILES_ACTIVE=esp  -e FOO="Hello World" kmmanu/spring-boot-docker`
 
 
 *FROM:* A docker image can use another image available in the docker registry as its base or parent image. In the above example, we use the openjdk:8-jdk-alpine image as our base image. It is a very lightweight OpenJDK 8 runtime image that uses Alpine Linux. (It’s perfect for small Java microservices.)
@@ -21,3 +21,7 @@ You can learn more about Volumes from the official documentation.
 *EXPOSE:* As the name suggests, this instruction allows you to expose a certain port to the outside world.
 
 *ENTRYPOINT/CMD:* This will be the executable to start when the container is booting. We must define them as JSON-Array, because we will use an ENTRYPOINT in combination with a CMD for some application arguments
+
+There are now 3 docker layers, with all the application resources in the later 2 layers. If the application dependencies don’t change, then the first layer (from BOOT-INF/lib) will not change, so the build will be faster, and so will the startup of the container at runtime as long as the base layers are already cached.
+
+
