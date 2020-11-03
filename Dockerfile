@@ -1,7 +1,7 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jdk
 MAINTAINER Manu K M
 VOLUME /tmp
-
+EXPOSE 8990
 #ARG JAR_FILE
 #COPY ${JAR_FILE} app.jar
 
