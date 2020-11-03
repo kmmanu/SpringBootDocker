@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 @SpringBootApplication
 @RestController
@@ -33,5 +35,10 @@ public class HelloDocker {
     @RequestMapping("/")
     public String home() {
         return greeting;
+    }
+
+    @RequestMapping("/greeting")
+    public String greeting() throws UnknownHostException {
+        return greeting + " from " + InetAddress.getLocalHost().getHostName();
     }
 }
